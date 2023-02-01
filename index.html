@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<style>
+		table {
+            font-family: rufina;
+            border-collapse: collapse;
+            letter-spacing: 0.5px;
+        }
+
+        th{
+            padding: 10px;
+            text-align: center;
+            font-family: Rufina;
+        }
+
+        td {
+            border: 1px solid #dddddd;
+            text-align: center;
+            padding: 10px;
+            width: auto;
+        }
+
+		.red{		
+			color: red;
+			font-weight: bold;
+		}
+
+		.Word {
+			text-align: left;
+			padding: 10px;
+			width: 150px;
+		}
+
+		tr:nth-child(odd) {
+			background-color: #f5f5f5;
+		}
+
+		.centerObject {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+    #dropdown{
+        width: 250px;
+        padding: 6px 12px;
+        margin: 8px 0;
+        border-radius: 4px; 
+        border-style: solid;
+        border-width: 1px;
+    } 
+	</style>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<!-- <link rel="stylesheet" href="./assets/styles.css" /> -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+	<title>Co2 calculater</title>
+	<script src="https://unpkg.com/vue@next"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+	<div id="app">
+
+<!-- simple put we emit a certain co2 amount pr liter fuel used and based upon the specific fuel       CAR DIESEL-->
+<!-- and the vehicles miles pr liter we can calculate the co2 emissions -->
+<!-- 10 km/pr L, you drive 100 km, for one liter 0.2 kg is emitted,  100/10*0.2 = 2kg-->
+
+<!-- https://www.epa.gov/energy/greenhouse-gases-equivalencies-calculator-calculations-and-references    CAR GASOLINE-->
+
+<!-- gasoline 8,887 grams of CO2/gallon of gasoline = 8.887 × 10-3 metric tons CO2/gallon of gasoline -->
+<!-- 1 galon = 3.78541       2.3476 grams pr liter -->
+
+<!-- 10,180 grams of CO2/gallon of diesel = 10.180 × 10-3 metric tons CO2/gallon of diesel -->
+<!-- 2.6892 grams pr liter -->
+
+<!-- https://www.mdpi.com/1996-1073/15/21/8188/pdf     SCOOTER-->
+
+<!-- 1.536 kg co2 pr 100 km -->
+
+<!-- https://science.howstuffworks.com/transport/flight/modern/question192.htm     AIRPLANE-->
+
+<!-- 5325 gallons pr 4501 km -->
+<!-- 20157 liters pr 4501 km,   4.4784 liters pr kilometer   (12 Liters pr km)    3.10 co2 kg pr liter(mass) -->
+
+<!-- https://www.future.green/futureblog/save-carbon-biking          BIKE-->
+	
+<!-- 33 grams 0.033 pr mile  0.020625 pr km-->
+
+<!-- https://www.sncf-connect.com/en-ch/help/calculation-co2-emissions-your-train-journey          BUS AND TRAIN-->
+	
+<!-- Bus: 94.7 g of CO2/km-->
+
+<!-- Metro: 3.8 g of CO2/km -->
+<!-- TGV train: 3.2 g of CO2 per kilometre
+Intercity train: 11.8 g of CO2 per kilometre
+TER train: 29.2 g of CO2 per kilometre
+Transilien train: 6.4 g of CO2 per kilometre -->
+
+<!-- https://8billiontrees.com/carbon-offsets-credits/carbon-ecological-footprint-calculators/boat-calculator/   SHIP-->
+	
+<!-- 21.24 pound pr gallon-->
+<!-- 9.634 kg pr gallon-->
+<!-- 2.5450 kg co2 pr liter-->
+
+<br><br><br><br>
+<div class="centerObject">
+<div class="dropdown">
+<select @change="CalculateCo2Emission" v-model.number="chosenVehicle"> 
+    <option v-for="(item,name) in vehicleType" :value="name">
+       {{name}}
+    </option>
+  </select>
+  <div>
+    <h3 class="title">Distance</h3>
+    <input class="input" @change="CalculateCo2Emission" v-model.number="distance" placeholder="Name">
+    <br>
+    <br>
+    <button type="button submit" class="button" @Click="CalculateCo2Emission">Calculate</button>  
+    <br>  <br> 
+  </div>
+    </div>
+
+    <h1>Co2 emission: {{result}}</h1>
+    <div>
+
+	</div>
+	<script src="./main.js"></script>
+
+	<script>
+		const mountedApp = app.mount('#app')
+	</script>
+</body>
+
+</html>
