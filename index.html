@@ -108,9 +108,9 @@ Transilien train: 6.4 g of CO2 per kilometre -->
 <br><br><br><br>
 <div class="centerObject">
 <div class="dropdown">
-<select @change="CalculateCo2Emission" v-model.number="chosenVehicle"> 
-    <option v-for="(item,name) in vehicleType" :value="name">
-       {{name}}
+<select @change="CalculateCo2Emission" v-model.number="chosenVehicleId"> 
+    <option v-for="(id, item,name) in vehicleType" :value="name">
+       {{item}}
     </option>
   </select>
   <div>
